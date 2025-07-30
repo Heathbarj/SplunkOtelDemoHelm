@@ -1,0 +1,18 @@
+# otel-demo-values.yaml
+
+# Disable the built-in OpenTelemetry Collector sub-chart
+opentelemetry-collector:
+  enabled: false
+
+# Configure default environment variables for all components
+# This will add/override these environment variables for every microservice in the demo.
+default:
+  envOverrides:
+    - name: NODE_IP
+      valueFrom:
+        fieldRef:
+          fieldPath: status.hostIP
+    - name: OTEL_EXPORTER_OTLP_ENDPOINT
+      # This assumes your Splunk OpenTelemetry Collector is running on the node's IP
+      # and listening on the default OTLP gRPC port 4317.
+      value: http://$(NODE_IP):4317
