@@ -42,5 +42,4 @@ HELM repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm
 HELM repo update 
 
 
-HELM  --install otel-demo open-telemetry/opentelemetry-demo --set components.frontend-proxy.service.type=NodePort --set components.frontend-proxy.service.nodePort=$(OTEL_PORT) --set opentelemetry-collector.enabled=false -f otel-demo-values.yaml
- 
+HELM  --install otel-demo open-telemetry/opentelemetry-demo --set components.frontend-proxy.service.type=NodePort --set components.frontend-proxy.service.nodePort=$(OTEL_PORT) --set opentelemetry-collector.enabled=false -f https://github.com/Heathbarj/SplunkOtelDemoHelm/blob/fc803b8c7cd04bfbc3441ac83b1109921489214f/otel-demo-values.yaml
