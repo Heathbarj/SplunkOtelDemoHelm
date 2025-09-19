@@ -1,0 +1,29 @@
+#splunk-otel-collector-values.yaml
+
+# my-values.yaml
+
+agent:
+  config:
+    receivers:
+      kubeletstats:
+        collection_interval: 10s # Or your desired interval
+        auth_type: serviceAccount # Or your authentication method
+        insecure_skip_verify: true # <--- This is the key line that ignores the self signed Cert of the OTEL-DEMO Helm Chart
+        # Other kubeletstats configurations if you have them
+        # e.g., endpoint: "https://${env:KUBERNETES_SERVICE_HOST}:${env:KUBERNETES_SERVICE_PORT}/metrics/cadvisor"
+
+# Add any other top-level configurations for the collector here,
+# such as cluster, gateway, etc., directly at the root.
+# For example:
+# cluster:
+#   enabled: true
+#   config:
+#     receivers:
+#       k8s_cluster:
+#         collection_interval: 10s
+#         node_conditions_to_report:
+#           - Ready
+#           - MemoryPressure
+#           - DiskPressure
+#           - PIDPressure
+#           - NetworkUnavailable
