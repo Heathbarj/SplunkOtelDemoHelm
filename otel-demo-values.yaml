@@ -1,7 +1,11 @@
-# otel-demo-values.yaml
-
-# Disable the built-in OpenTelemetry Collector sub-chart
+# Disable the built-in OpenTelemetry Collector sub-chart and Jager, Prometheus, Graphana since we are using Splunk
 opentelemetry-collector:
+  enabled: false
+jaeger:
+  enabled: false
+prometheus:
+  enabled: false
+grafana:
   enabled: false
 
 # Configure default environment variables for all components
@@ -12,7 +16,7 @@ default:
       valueFrom:
         fieldRef:
           fieldPath: status.hostIP
-    - name: OTEL_EXPORTER_OTLP_ENDPOINT
-      # This assumes your Splunk OpenTelemetry Collector is running on the node's IP
-      # and listening on the default OTLP gRPC port 4317.
-      value: http://$(NODE_IP):4317
+    - name: OTEL_COLLECTOR_NAME
+      valueFrom:
+        fieldRef:
+          fieldPath: status.hostIP
