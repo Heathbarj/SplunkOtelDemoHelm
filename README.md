@@ -28,7 +28,7 @@ Install the Splunk OpenTelemetry Collector for Kubernetes with the desired confi
 ##########
 
 microk8s helm install splunk-otel-collector \
-  --set "splunkObservability.accessToken=GyJQtPy8OExyIImrX0dQ1Q" \
+  --set "splunkObservability.accessToken=YOURACCESSTOKEN" \
   --set "clusterName=PI" \
   --set "splunkObservability.realm=us1" \
   --set "gateway.enabled=false" \
